@@ -143,4 +143,28 @@ func arr() {
 	mysli2 := myarr[1:3:4]
 	fmt.Printf("mysli2 的长度为：%d, 容量为：%d, 类型为 %T\n", len(mysli2), cap(mysli2), mysli2)
 	fmt.Println(mysli2)
+
+	a := make([]int, 2)
+	b := make([]int, 2, 10)
+	fmt.Println(a, b)
+	fmt.Println(len(a), cap(a))
+	fmt.Println(len(b), cap(b))
+
+	arr := []int{1}
+	arr = append(arr, 2)
+	arr = append(arr, 3, 4)
+	// ... 和 js 里面的 ... 一样，只不过写在后面
+	arr = append(arr, []int{7, 8}...)
+	arr = append([]int{0}, arr...)
+	arr = append(arr[:5], append([]int{5, 6}, arr[5:]...)...)
+
+	fmt.Println(arr)
+
+	foo := []int{1, 2, 3}
+	fmt.Println(len((foo)))
+	fmt.Println(cap((foo)))
+
+	foo = append(foo, 4, 5, 6, 7)
+	fmt.Println(len((foo)))
+	fmt.Println(cap((foo)))
 }
