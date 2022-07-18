@@ -86,8 +86,61 @@ func main() {
 	// 匿名变量：_
 	// 不分配内存，不占用内存空间
 	// 可以多次声明
-	a, _ := getData()
-	_, b := getData()
+	// a, _ := getData()
+	// _, b := getData()
+	// fmt.Println(a, b)
+
+	var a byte = 'A'
+	// 8进制写法: var a byte = '\101'     其中 \ 是固定前缀
+	// 16进制写法: var a byte = '\x41'    其中 \x 是固定前缀
+
+	var b uint8 = 'B'
+
 	fmt.Println(a, b)
 
+	str := [5]byte{104, 101, 108, 108, 111}
+
+	fmt.Println(len(str))
+
+	var country string = "hello, 中国"
+	fmt.Println(len(country))
+
+	arr()
+
+}
+
+func arr() {
+	// var arr [3]int = [3]int{1, 2, 3}
+	// fmt.Println(arr)
+	// arr2 := [3]int{1, 2, 3}
+	// fmt.Println(arr2)
+	// arr3 := [...]int{1, 2, 3, 4, 5, 6, 7}
+	// fmt.Println(arr3)
+	// fmt.Printf("%T", arr)
+	// fmt.Printf("%T", arr2)
+	// fmt.Printf("%T", arr3)
+
+	// type arr4 [3]int
+
+	// myarr := arr4{1, 2, 3}
+	// fmt.Printf("%d 的类型是: %T", myarr, myarr)
+
+	// arr5 := [4]int{2: 3, 1: 5}
+	// fmt.Println(arr5)
+
+	// arr := [...]int{1, 2, 3, 4, 5}
+	// fmt.Println(arr)
+	// sliceArr := arr[1:3:4]
+	// fmt.Println(sliceArr)
+
+	myarr := [5]int{1, 2, 3, 4, 5}
+	fmt.Printf("myarr 的长度为：%d, 容量为：%d\n", len(myarr), cap(myarr))
+
+	mysli1 := myarr[1:3]
+	fmt.Printf("mysli1 的长度为：%d, 容量为：%d, 类型为 %T\n", len(mysli1), cap(mysli1), mysli1)
+	fmt.Println(mysli1)
+
+	mysli2 := myarr[1:3:4]
+	fmt.Printf("mysli2 的长度为：%d, 容量为：%d, 类型为 %T\n", len(mysli2), cap(mysli2), mysli2)
+	fmt.Println(mysli2)
 }
