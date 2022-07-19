@@ -167,4 +167,81 @@ func arr() {
 	foo = append(foo, 4, 5, 6, 7)
 	fmt.Println(len((foo)))
 	fmt.Println(cap((foo)))
+
+	var numbers4 = [...]int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
+	myslice := numbers4[4:6:8]
+	fmt.Printf("myslice为 %d, 其长度为: %d, 其容量为: %d\n", myslice, len(myslice), cap(myslice))
+
+	// 这里的 cap(4) 导致了截取了 numbers4 的 [5 6 7 8]
+	myslice = myslice[:cap(myslice)]
+	fmt.Printf("myslice为 %d, 其长度为: %d, 其容量为: %d\n", myslice, len(myslice), cap(myslice))
+
+	// person := make(map[string]int)
+	// person["name"] = 18
+	// fmt.Println(person["name"])
+	// fmt.Println(person["names"])
+
+	fmt.Println(fibo(10))
+
+	person := map[string]string{"name": "king", "age": "18"}
+
+	if names, ok := person["names"]; ok {
+		fmt.Println(names)
+	} else {
+		fmt.Println(ok)
+	}
+
+	for key, value := range person {
+		fmt.Printf("key: %s, value: %s\n", key, value)
+	}
+
+	name := "king"
+	ptr := &name
+
+	fmt.Println(ptr)
+	fmt.Println(*ptr)
+	fmt.Println(&name)
+	fmt.Println(name)
+
+	fmt.Println(ptr == &name)
+	fmt.Println(*ptr == name)
+
+	demoArr := [1]int{1}
+	fmt.Println(demoArr)
+	changeArrForPtr(&demoArr)
+	fmt.Println(demoArr)
+
+	demoArr2 := [2]int{1, 2}
+	fmt.Println(demoArr2)
+	changeArrForSls(demoArr2[:])
+	fmt.Println(demoArr2)
+}
+
+func changeArrForPtr(arr *([1]int)) {
+	(*arr)[0] = 100
+}
+
+func changeArrForSls(arr []int) {
+	arr[0] = 100
+}
+
+func bool2int(b bool) int {
+	if b {
+		return 1
+	}
+	return 0
+}
+
+func int2bool(i int) bool {
+	return i != 0
+}
+
+func fibo(num int) int {
+	if num == 0 {
+		return 0
+	} else if num == 1 || num == 2 {
+		return 1
+	} else {
+		return fibo(num-1) + fibo(num-2)
+	}
 }
