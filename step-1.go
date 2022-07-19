@@ -116,6 +116,13 @@ func main() {
 
 	fmt.Printf("now: %d", time.Now())
 
+	switch i := 2; i * 4 {
+	case 8:
+		fmt.Println(i)
+	default:
+		fmt.Println("default")
+	}
+
 }
 
 func error(x int) {
@@ -128,6 +135,7 @@ func error(x int) {
 
 	var arr [10]int
 	arr[x] = 88
+
 }
 
 func arr() {
