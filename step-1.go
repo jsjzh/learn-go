@@ -1,4 +1,4 @@
-package main
+package step1
 
 import (
 	"fmt"
@@ -83,7 +83,7 @@ func getData() (int, int) {
 	return 100, 200
 }
 
-func main() {
+func step1() {
 
 	declareVariables()
 	// 匿名变量：_

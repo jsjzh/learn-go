@@ -1,4 +1,4 @@
-package main
+package step2
 
 import (
 	"encoding/json"
@@ -187,7 +187,7 @@ func typeAssertion() {
 	// fmt.Println(t2)
 }
 
-func main() {
+func step2() {
 	defer func() {
 		// body()
 		// shopping()
