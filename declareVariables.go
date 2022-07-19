@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"math"
+	"time"
 )
 
 func print() {
@@ -20,6 +21,7 @@ func print() {
 }
 
 func declareVariables() {
+
 	var (
 		name string = "king"
 		age  int    = 18
@@ -82,6 +84,7 @@ func getData() (int, int) {
 }
 
 func main() {
+
 	declareVariables()
 	// 匿名变量：_
 	// 不分配内存，不占用内存空间
@@ -107,6 +110,24 @@ func main() {
 
 	arr()
 
+	error(20)
+
+	fmt.Println("everything is ok")
+
+	fmt.Printf("now: %d", time.Now())
+
+}
+
+func error(x int) {
+	defer func() {
+		if err := recover(); err != nil {
+			fmt.Println(err)
+			// panic("oops")
+		}
+	}()
+
+	var arr [10]int
+	arr[x] = 88
 }
 
 func arr() {
@@ -215,6 +236,65 @@ func arr() {
 	fmt.Println(demoArr2)
 	changeArrForSls(demoArr2[:])
 	fmt.Println(demoArr2)
+
+	age := 18
+	switch {
+	case age > 6:
+		fmt.Println(">6")
+		fallthrough
+	case age <= 6:
+		fmt.Println("<=6")
+	}
+
+	hello := 1
+	for hello <= 5 {
+		fmt.Println(hello)
+		hello++
+	}
+
+	for i := 0; i < 10; i++ {
+		fmt.Println("hello", i)
+	}
+
+	// br := 1
+
+	// for {
+	// 	if br >= 100 {
+	// 		break
+	// 		// return
+	// 	}
+	// 	fmt.Printf("hello %d", br)
+	// 	br++
+	// 	continue
+	// }
+
+	obj := map[string]int{"foo": 1, "bar": 2}
+
+	for key, value := range obj {
+		fmt.Printf("key: %s, value: %d\n", key, value)
+	}
+
+	_arr := [...]int{1, 2, 3}
+
+	for key, value := range _arr {
+		fmt.Printf("key: %d, value: %d\n", key, value)
+	}
+
+	_sliceArr := []int{1, 2, 3, 4, 5}
+
+	for _, value := range _sliceArr {
+		if value == 3 {
+			goto flag
+		}
+
+	flag:
+		fmt.Println("stop")
+	}
+
+}
+
+func judge(age int) bool {
+	return false
 }
 
 func changeArrForPtr(arr *([1]int)) {
