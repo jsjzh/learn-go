@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"strconv"
 )
@@ -42,8 +43,7 @@ type IDev interface {
 	sayHello()
 }
 
-func main() {
-
+func body() {
 	self := person{
 		name:   "king",
 		age:    18,
@@ -70,8 +70,6 @@ func main() {
 	fmt.Printf("self3's name: %s\n", (*self3).name)
 
 	self.sayHello()
-
-	shopping()
 }
 
 type IGood interface {
@@ -131,4 +129,69 @@ func shopping() {
 	goods := []IGood{iPhone, iPhone, iPhone, earphones}
 	allPrice := calculateAllPrice(goods)
 	fmt.Printf("该订单总共需要支付 %d 元", allPrice)
+}
+
+type Person struct {
+	Name string `json:"name"`
+	Age  int    `json:"age"`
+	Addr string `json:"addr,omitempty"`
+}
+
+func tag() {
+
+	p1 := Person{
+		Name: "Jack",
+		Age:  22,
+	}
+
+	data1, err := json.Marshal(p1)
+
+	if err != nil {
+		panic(err)
+	}
+
+	// p1 没有 Addr，就不会打印了
+	fmt.Printf("%s\n", data1)
+
+	// ================
+
+	p2 := Person{
+		Name: "Jack",
+		Age:  22,
+		Addr: "China",
+	}
+
+	data2, err := json.Marshal(p2)
+	if err != nil {
+		panic(err)
+	}
+
+	// p2 则会打印所有
+	fmt.Printf("%s\n", data2)
+}
+
+func typeAssertion() {
+
+	var i interface{}
+	var count int8
+	fmt.Printf("type: %T\n", i)
+	fmt.Printf("type: %T\n", count)
+
+	t1, ok := i.(interface{})
+	fmt.Println(ok)
+	fmt.Println(t1)
+
+	// fmt.Println("=====分隔线=====")
+
+	// t2 := i.(string)
+	// fmt.Println(t2)
+}
+
+func main() {
+	defer func() {
+		// body()
+		// shopping()
+		// tag()
+		typeAssertion()
+	}()
 }
