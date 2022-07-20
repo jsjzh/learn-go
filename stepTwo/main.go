@@ -180,19 +180,113 @@ func tag() {
 
 func typeAssertion() {
 
-	var i interface{}
-	var count int8
-	fmt.Printf("type: %T\n", i)
-	fmt.Printf("type: %T\n", count)
+	var i interface{} = 10
+	t1, ok := i.(int)
+	fmt.Printf("%d-%t\n", t1, ok)
 
-	t1, ok := i.(interface{})
-	fmt.Println(ok)
-	fmt.Println(t1)
+	fmt.Println("=====分隔线1=====")
 
-	// fmt.Println("=====分隔线=====")
+	t2, ok := i.(string)
+	fmt.Printf("%s-%t\n", t2, ok)
 
-	// t2 := i.(string)
-	// fmt.Println(t2)
+	fmt.Println("=====分隔线2=====")
+
+	var k interface{} // nil
+	t3, ok := k.(interface{})
+	fmt.Println(t3, "-", ok)
+
+	// 这里是比较奇怪的，为什么一开始声明 k 是 interface{} 时候，断言是 interface{} 会出错
+	// 但是给了 k 值之后，断言 interface{} 就对了
+	// 难道是因为 k 的初始值为 nil
+	// 哦，应该是的，interface{} 就和 ts 的 any 有点像
+	// 可以被附上任何值
+	fmt.Println("=====分隔线3=====")
+	k = "10"
+	t4, ok := k.(interface{})
+	fmt.Printf("%s-%t\n", t4, ok)
+
+	t5, ok := k.(int)
+	fmt.Printf("%d-%t\n", t5, ok)
+
+	var inter interface{} = 1
+	tinter, ok := inter.(interface{})
+	fmt.Printf("tinter's type: %T, tinter: %+v, ok: %t\n", tinter, tinter, ok)
+	tinter, ok = inter.(int)
+	fmt.Printf("tinter's type: %T, tinter: %+v, ok: %t\n", tinter, tinter, ok)
+	tinter, ok = inter.(string)
+	fmt.Printf("tinter's type: %T, tinter: %+v, ok: %t\n", tinter, tinter, ok)
+
+	var kinter interface{}
+	tkinter, ok := kinter.(interface{})
+	fmt.Printf("tkinter's type: %T, tkinter: %+v, ok: %t\n", tkinter, tkinter, ok)
+	kinter = "1"
+	tkinter, ok = kinter.(int)
+	fmt.Printf("tkinter's type: %T, tkinter: %+v, ok: %t\n", tkinter, tkinter, ok)
+	tkinter, ok = kinter.(string)
+	fmt.Printf("tkinter's type: %T, tkinter: %+v, ok: %t\n", tkinter, tkinter, ok)
+
+	var developer IDev = &person{}
+	_findType(developer)
+}
+
+func _findType(i interface{}) {
+	switch x := i.(type) {
+	case int:
+		fmt.Println(x, "is int")
+	case string:
+		fmt.Println(x, "is string")
+	case nil:
+		fmt.Println(x, "is int")
+	case IDev:
+		fmt.Println(x, "is developer")
+	default:
+		fmt.Println(x, "no type matched")
+	}
+}
+
+func someParamsFunc(params ...interface{}) {
+	fmt.Printf("type %T, value %+v\n", params, params)
+	for _, param := range params {
+		fmt.Printf("type %T, value %+v\n", param, param)
+		fmt.Println(param)
+	}
+}
+
+func goInterface() {
+	someParamsFunc(1, 2, 3)
+
+	person := map[string]interface{}{
+		"name": "king",
+		"age":  18,
+	}
+
+	arr := [...]interface{}{1, 2, 3, "name", "king"}
+	sliceArr := []interface{}{1, 2, 3, "name", "king"}
+
+	type Demo struct {
+		name interface{}
+	}
+
+	demo := &Demo{
+		name: "king",
+	}
+
+	demo2 := &Demo{
+		name: 110,
+	}
+
+	fmt.Printf("person: %+v\n", person)
+	fmt.Printf("arr: %+v\n", arr)
+	fmt.Printf("sliceArr: %+v\n", sliceArr)
+	fmt.Printf("demo: %+v\n", demo)
+	fmt.Printf("demo2: %+v\n", demo2)
+
+	slice := []int{1, 2, 3, 4, 5}
+	var iSlice interface{}
+	iSlice = slice
+	// fmt.Println(iSlice[:])
+	tiSlice, _ := iSlice.([]int)
+	fmt.Println(tiSlice[:])
 }
 
 func main() {
@@ -200,6 +294,17 @@ func main() {
 		// body()
 		// shopping()
 		// tag()
-		typeAssertion()
+		// typeAssertion()
+		goInterface()
+
+		a := 10
+		b := interface{}(a)
+
+		switch interface{}(b).(type) {
+		case int:
+			fmt.Println("参数的类型是 int")
+		case string:
+			fmt.Println("参数的类型是 string")
+		}
 	}()
 }
