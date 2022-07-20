@@ -83,7 +83,7 @@ func getData() (int, int) {
 	return 100, 200
 }
 
-func step1() {
+func main() {
 
 	declareVariables()
 	// 匿名变量：_

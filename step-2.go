@@ -187,7 +187,7 @@ func typeAssertion() {
 	// fmt.Println(t2)
 }
 
-func step2() {
+func main() {
 	defer func() {
 		// body()
 		// shopping()
