@@ -128,6 +128,54 @@ func main() {
 		fmt.Printf("key: %s\n", key)
 		fmt.Printf("value: %d\n", value)
 	}
+
+	me := &Person{
+		name: "king",
+		age:  18,
+
+		Company: &Company{
+			cname: "大搜车",
+		},
+
+		father: &Person{
+			name: "king's father",
+			age:  28,
+		},
+	}
+
+	me.sayHello()
+	me.addAge()
+	me.sayHello()
+}
+
+type People interface {
+	sayHello()
+}
+
+type Company struct {
+	cname, caddr string
+}
+
+type Person struct {
+	name, work string
+	age        int
+	gender     int8
+
+	*Company
+
+	father *Person
+	mother *Person
+}
+
+func (person *Person) sayHello() {
+	fmt.Printf("name: %s\n", person.name)
+	fmt.Printf("age: %d\n", person.age)
+	fmt.Printf("cname: %s\n", person.cname)
+	fmt.Printf("father's name: %s\n", person.father.name)
+}
+
+func (person *Person) addAge() {
+	person.age++
 }
 
 func getNumber() int {

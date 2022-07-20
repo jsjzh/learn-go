@@ -39,6 +39,14 @@ func (person *person) sayHello() {
 	fmt.Println("hi, I'm developer")
 }
 
+func (person *person) assertion(i interface{}) {
+	if _, ok := i.(string); !ok {
+		fmt.Println("no no no")
+	}
+
+	fmt.Printf("i: %d", i)
+}
+
 type IDev interface {
 	sayHello()
 }
