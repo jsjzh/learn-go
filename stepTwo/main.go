@@ -3,6 +3,7 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"reflect"
 	"strconv"
 )
 
@@ -289,22 +290,32 @@ func goInterface() {
 	fmt.Println(tiSlice[:])
 }
 
+func reflection() {
+	name := "king"
+
+	fmt.Printf("name's type: %T, value: %s\n", name, name)
+
+	t := reflect.TypeOf(name)
+	v := reflect.ValueOf(name)
+
+	fmt.Printf("name reflect's type's type: %T, value: %+v\n", t, t)
+	fmt.Printf("name reflect's value's type: %T, value: %+v\n", v, v)
+
+	n := v.Interface()
+
+	fmt.Printf("n's type: %T, value: %s\n", n, n)
+
+	fmt.Printf("v's CanSet: %t\n", v.CanSet())
+
+}
+
 func main() {
 	defer func() {
 		// body()
 		// shopping()
 		// tag()
 		// typeAssertion()
-		goInterface()
-
-		a := 10
-		b := interface{}(a)
-
-		switch interface{}(b).(type) {
-		case int:
-			fmt.Println("参数的类型是 int")
-		case string:
-			fmt.Println("参数的类型是 string")
-		}
+		// goInterface()
+		reflection()
 	}()
 }
