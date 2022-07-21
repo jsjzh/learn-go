@@ -1,4 +1,4 @@
-package main
+package review
 
 import (
 	"log"
@@ -7,7 +7,7 @@ import (
 
 // 这里主要是每天复习一下昨天重要的未完全理解的内容
 
-func main() {
+func init() {
 
 	defer func() {
 		if err := recover(); err != nil {

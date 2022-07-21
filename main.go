@@ -1,7 +1,11 @@
 package main
 
-import "fmt"
+import (
+	// _ "learn-go/review"
 
-func main() {
-	fmt.Println("hello world")
-}
+	// _ "learn-go/stepOne"
+	// _ "learn-go/stepTWo"
+	_ "learn-go/stepThree"
+)
+
+func main() {}

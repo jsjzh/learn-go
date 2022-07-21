@@ -1,4 +1,4 @@
-package main
+package stepTwo
 
 import (
 	"encoding/json"
@@ -332,7 +332,7 @@ func reflection() {
 
 }
 
-func main() {
+func init() {
 	defer func() {
 		// body()
 		// shopping()

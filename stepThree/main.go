@@ -1,5 +1,12 @@
-package main
+package stepThree
 
-func main() {
+import (
+	"learn-go/utils"
+	"log"
+)
 
+func init() {
+	log.Println("-------------------- from step three --------------------")
+	utils.SayHello()
+	utils.SayHi()
 }
