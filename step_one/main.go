@@ -1,4 +1,4 @@
-package stepOne
+package step_one
 
 import (
 	"log"

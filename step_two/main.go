@@ -1,4 +1,4 @@
-package stepTwo
+package step_two
 
 import (
 	"encoding/json"
