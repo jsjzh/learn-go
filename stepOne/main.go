@@ -1,13 +1,13 @@
 package main
 
 import (
-	"fmt"
+	"log"
 	"math"
 	"time"
 )
 
 func print() {
-	// fmt.Printf("")
+	// log.Printf("")
 	// %b    表示为二进制
 	// %c    该值对应的unicode码值
 	// %d    表示为十进制
@@ -39,44 +39,44 @@ func declareVariables() {
 
 	late = "hello"
 
-	fmt.Println(name, age, sex, usex, dot, dot32, isDev, late)
+	log.Println(name, age, sex, usex, dot, dot32, isDev, late)
 
 	// := 自动推导，不用 var 声明
 	auto := "king"
 
-	fmt.Println(auto)
+	log.Println(auto)
 
 	autoName, autoAge, autoSex, autoIsDev := "autoKing", 18, 1, true
 
-	fmt.Println(autoName, autoAge, autoSex, autoIsDev)
+	log.Println(autoName, autoAge, autoSex, autoIsDev)
 
 	var memoryAge int = 28
 	// & 用来访问变量内存地址
 	var memoryPath = &memoryAge
 
-	fmt.Println(memoryAge)
-	fmt.Println(memoryPath)
+	log.Println(memoryAge)
+	log.Println(memoryPath)
 	// * 用来读取内存地址对应的变量
-	fmt.Println(*memoryPath)
+	log.Println(*memoryPath)
 
 	// new 用来声明 int(也就是 type) 的零值，返回变量地址
 	var foo *int = new(int)
-	fmt.Println("foo memory path", foo)
-	fmt.Println("foo", *foo)
+	log.Println("foo memory path", foo)
+	log.Println("foo", *foo)
 
-	fmt.Println("MaxInt8", math.MaxInt8)
-	fmt.Println("MaxUint8", math.MaxUint8)
-	fmt.Println("MaxFloat32", math.MaxFloat32)
-	fmt.Println("MaxFloat64", math.MaxFloat64)
+	log.Println("MaxInt8", math.MaxInt8)
+	log.Println("MaxUint8", math.MaxUint8)
+	log.Println("MaxFloat32", math.MaxFloat32)
+	log.Println("MaxFloat64", math.MaxFloat64)
 
 	var myFloat float32 = 10000018
 
-	fmt.Println("myFloat", myFloat)
-	fmt.Println("myFloat + 1", myFloat+1)
+	log.Println("myFloat", myFloat)
+	log.Println("myFloat + 1", myFloat+1)
 
 	var myFloat2 float32 = 100000187
-	fmt.Println("myFloat2", myFloat2)
-	fmt.Println("myFloat2 + 1", myFloat2+1)
+	log.Println("myFloat2", myFloat2)
+	log.Println("myFloat2 + 1", myFloat2+1)
 }
 
 func getData() (int, int) {
@@ -91,7 +91,7 @@ func main() {
 	// 可以多次声明
 	// a, _ := getData()
 	// _, b := getData()
-	// fmt.Println(a, b)
+	// log.Println(a, b)
 
 	var a byte = 'A'
 	// 8进制写法: var a byte = '\101'     其中 \ 是固定前缀
@@ -99,28 +99,28 @@ func main() {
 
 	var b uint8 = 'B'
 
-	fmt.Println(a, b)
+	log.Println(a, b)
 
 	str := [5]byte{104, 101, 108, 108, 111}
 
-	fmt.Println(len(str))
+	log.Println(len(str))
 
 	var country string = "hello, 中国"
-	fmt.Println(len(country))
+	log.Println(len(country))
 
 	arr()
 
 	error(20)
 
-	fmt.Println("everything is ok")
+	log.Println("everything is ok")
 
-	fmt.Printf("now: %d", time.Now())
+	log.Printf("now: %d", time.Now())
 
 	switch i := 2; i * 4 {
 	case 8:
-		fmt.Println(i)
+		log.Println(i)
 	default:
-		fmt.Println("default")
+		log.Println("default")
 	}
 
 }
@@ -128,7 +128,7 @@ func main() {
 func error(x int) {
 	defer func() {
 		if err := recover(); err != nil {
-			fmt.Println(err)
+			log.Println(err)
 			// panic("oops")
 		}
 	}()
@@ -140,44 +140,44 @@ func error(x int) {
 
 func arr() {
 	// var arr [3]int = [3]int{1, 2, 3}
-	// fmt.Println(arr)
+	// log.Println(arr)
 	// arr2 := [3]int{1, 2, 3}
-	// fmt.Println(arr2)
+	// log.Println(arr2)
 	// arr3 := [...]int{1, 2, 3, 4, 5, 6, 7}
-	// fmt.Println(arr3)
-	// fmt.Printf("%T", arr)
-	// fmt.Printf("%T", arr2)
-	// fmt.Printf("%T", arr3)
+	// log.Println(arr3)
+	// log.Printf("%T", arr)
+	// log.Printf("%T", arr2)
+	// log.Printf("%T", arr3)
 
 	// type arr4 [3]int
 
 	// myarr := arr4{1, 2, 3}
-	// fmt.Printf("%d 的类型是: %T", myarr, myarr)
+	// log.Printf("%d 的类型是: %T", myarr, myarr)
 
 	// arr5 := [4]int{2: 3, 1: 5}
-	// fmt.Println(arr5)
+	// log.Println(arr5)
 
 	// arr := [...]int{1, 2, 3, 4, 5}
-	// fmt.Println(arr)
+	// log.Println(arr)
 	// sliceArr := arr[1:3:4]
-	// fmt.Println(sliceArr)
+	// log.Println(sliceArr)
 
 	myarr := [5]int{1, 2, 3, 4, 5}
-	fmt.Printf("myarr 的长度为：%d, 容量为：%d\n", len(myarr), cap(myarr))
+	log.Printf("myarr 的长度为：%d, 容量为：%d\n", len(myarr), cap(myarr))
 
 	mysli1 := myarr[1:3]
-	fmt.Printf("mysli1 的长度为：%d, 容量为：%d, 类型为 %T\n", len(mysli1), cap(mysli1), mysli1)
-	fmt.Println(mysli1)
+	log.Printf("mysli1 的长度为：%d, 容量为：%d, 类型为 %T\n", len(mysli1), cap(mysli1), mysli1)
+	log.Println(mysli1)
 
 	mysli2 := myarr[1:3:4]
-	fmt.Printf("mysli2 的长度为：%d, 容量为：%d, 类型为 %T\n", len(mysli2), cap(mysli2), mysli2)
-	fmt.Println(mysli2)
+	log.Printf("mysli2 的长度为：%d, 容量为：%d, 类型为 %T\n", len(mysli2), cap(mysli2), mysli2)
+	log.Println(mysli2)
 
 	a := make([]int, 2)
 	b := make([]int, 2, 10)
-	fmt.Println(a, b)
-	fmt.Println(len(a), cap(a))
-	fmt.Println(len(b), cap(b))
+	log.Println(a, b)
+	log.Println(len(a), cap(a))
+	log.Println(len(b), cap(b))
 
 	arr := []int{1}
 	arr = append(arr, 2)
@@ -187,81 +187,81 @@ func arr() {
 	arr = append([]int{0}, arr...)
 	arr = append(arr[:5], append([]int{5, 6}, arr[5:]...)...)
 
-	fmt.Println(arr)
+	log.Println(arr)
 
 	foo := []int{1, 2, 3}
-	fmt.Println(len((foo)))
-	fmt.Println(cap((foo)))
+	log.Println(len((foo)))
+	log.Println(cap((foo)))
 
 	foo = append(foo, 4, 5, 6, 7)
-	fmt.Println(len((foo)))
-	fmt.Println(cap((foo)))
+	log.Println(len((foo)))
+	log.Println(cap((foo)))
 
 	var numbers4 = [...]int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
 	myslice := numbers4[4:6:8]
-	fmt.Printf("myslice为 %d, 其长度为: %d, 其容量为: %d\n", myslice, len(myslice), cap(myslice))
+	log.Printf("myslice为 %d, 其长度为: %d, 其容量为: %d\n", myslice, len(myslice), cap(myslice))
 
 	// 这里的 cap(4) 导致了截取了 numbers4 的 [5 6 7 8]
 	myslice = myslice[:cap(myslice)]
-	fmt.Printf("myslice为 %d, 其长度为: %d, 其容量为: %d\n", myslice, len(myslice), cap(myslice))
+	log.Printf("myslice为 %d, 其长度为: %d, 其容量为: %d\n", myslice, len(myslice), cap(myslice))
 
 	// person := make(map[string]int)
 	// person["name"] = 18
-	// fmt.Println(person["name"])
-	// fmt.Println(person["names"])
+	// log.Println(person["name"])
+	// log.Println(person["names"])
 
-	fmt.Println(fibo(10))
+	log.Println(fibo(10))
 
 	person := map[string]string{"name": "king", "age": "18"}
 
 	if names, ok := person["names"]; ok {
-		fmt.Println(names)
+		log.Println(names)
 	} else {
-		fmt.Println(ok)
+		log.Println(ok)
 	}
 
 	for key, value := range person {
-		fmt.Printf("key: %s, value: %s\n", key, value)
+		log.Printf("key: %s, value: %s\n", key, value)
 	}
 
 	name := "king"
 	ptr := &name
 
-	fmt.Println(ptr)
-	fmt.Println(*ptr)
-	fmt.Println(&name)
-	fmt.Println(name)
+	log.Println(ptr)
+	log.Println(*ptr)
+	log.Println(&name)
+	log.Println(name)
 
-	fmt.Println(ptr == &name)
-	fmt.Println(*ptr == name)
+	log.Println(ptr == &name)
+	log.Println(*ptr == name)
 
 	demoArr := [1]int{1}
-	fmt.Println(demoArr)
+	log.Println(demoArr)
 	changeArrForPtr(&demoArr)
-	fmt.Println(demoArr)
+	log.Println(demoArr)
 
 	demoArr2 := [2]int{1, 2}
-	fmt.Println(demoArr2)
+	log.Println(demoArr2)
 	changeArrForSls(demoArr2[:])
-	fmt.Println(demoArr2)
+	log.Println(demoArr2)
 
 	age := 18
 	switch {
 	case age > 6:
-		fmt.Println(">6")
+		log.Println(">6")
 		fallthrough
 	case age <= 6:
-		fmt.Println("<=6")
+		log.Println("<=6")
 	}
 
 	hello := 1
 	for hello <= 5 {
-		fmt.Println(hello)
+		log.Println(hello)
 		hello++
 	}
 
 	for i := 0; i < 10; i++ {
-		fmt.Println("hello", i)
+		log.Println("hello", i)
 	}
 
 	// br := 1
@@ -271,7 +271,7 @@ func arr() {
 	// 		break
 	// 		// return
 	// 	}
-	// 	fmt.Printf("hello %d", br)
+	// 	log.Printf("hello %d", br)
 	// 	br++
 	// 	continue
 	// }
@@ -279,13 +279,13 @@ func arr() {
 	obj := map[string]int{"foo": 1, "bar": 2}
 
 	for key, value := range obj {
-		fmt.Printf("key: %s, value: %d\n", key, value)
+		log.Printf("key: %s, value: %d\n", key, value)
 	}
 
 	_arr := [...]int{1, 2, 3}
 
 	for key, value := range _arr {
-		fmt.Printf("key: %d, value: %d\n", key, value)
+		log.Printf("key: %d, value: %d\n", key, value)
 	}
 
 	_sliceArr := []int{1, 2, 3, 4, 5}
@@ -296,7 +296,7 @@ func arr() {
 		}
 
 	flag:
-		fmt.Println("stop")
+		log.Println("stop")
 	}
 
 }
