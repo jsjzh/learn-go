@@ -298,15 +298,18 @@ func reflection() {
 	t := reflect.TypeOf(name)
 	v := reflect.ValueOf(name)
 
-	fmt.Printf("name reflect's type's type: %T, value: %+v\n", t, t)
-	fmt.Printf("name reflect's value's type: %T, value: %+v\n", v, v)
+	fmt.Printf("t reflect's type's type: %T, value: %+v\n", t, t)
+	fmt.Printf("v reflect's value's type: %T, value: %+v\n", v, v)
 
 	n := v.Interface()
 
 	fmt.Printf("n's type: %T, value: %s\n", n, n)
 
-	fmt.Printf("v's CanSet: %t\n", v.CanSet())
-
+	v1 := reflect.ValueOf(&name)
+	fmt.Printf("v1 reflect's value: %+v\n", v1)
+	fmt.Printf("v1's CanSet: %t\n", v1.CanSet())
+	v2 := v1.Elem()
+	fmt.Printf("v2's CanSet: %t\n", v2.CanSet())
 }
 
 func main() {
